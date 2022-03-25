@@ -1,13 +1,47 @@
 <html lang="en">
 <head>
+     <!-- Google Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link
+       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
+       rel="stylesheet"
+     />
+     <style>
+       body {
+         font-family: "Montserrat", sans-serif;
+       }
+     </style>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                brand: {
+                  50: "#f6f9fe",
+                  100: "#eef4fc",
+                  200: "#dce5f6",
+                  300: "#c2d0ea",
+                  400: "#869bc6",
+                  500: "#556b9a",
+                  600: "#3a4d76",
+                  700: "#263962",
+                  800: "#132146",
+                  900: "#040d30",
+                },
+              },
+            },
+          },
+        };
+      </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
-<body class="bg-gradient-to-b from-slate-900 to-slate-800">
-    <div class="py-10">
+<body class="bg-black">
+    <div class="to-brand-900 absolute inset-0 bg-gradient-to-t from-black py-10">
     <div class="w-full max-w-sm m-auto rounded-xl bg-white p-6 shadow-lg">
         <h1 class="text-brand-900 mb-4 text-2xl font-bold">Sign In</h1>
 
@@ -15,7 +49,7 @@
             <div>
                 <label class="text-brand-900 mb-2 block text-sm font-medium">Email</label>
                 <input type="text"
-                    class="block w-full px-4 py-2 mt-2 text-slate-600 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                placeholder="admin@appwrite.io" class="bg-brand-100 ring-brand-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
             </div>
 
             <div class="mt-4">
@@ -24,11 +58,11 @@
             
 
                 <input type="password"
-                    class="block w-full px-4 py-2 mt-2 text-slate-600 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                placeholder="Password" class="bg-brand-100 ring-brand-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
             </div>
-            <div class="mt-6">
+            <div class="mt-6 flex justify-center">
                 <button
-                    class="w-full px-4 py-2 tracking-wide transition-colors duration-200 transform text-white bg-slate-600 rounded-lg hover:bg-slate-500">
+                    class="ring-brand-200 bg-brand-900 rounded-lg px-12 py-3 font-bold text-white hover:bg-black focus:ring-4">
                     Login
                 </button>
             </div>
@@ -44,13 +78,8 @@
 
         <div class="flex items-center mt-6 -mx-2">
             <button type="button"
-                class="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-200 transform bg-green-500 rounded-md hover:bg-green-400 focus:bg-green-400 focus:outline-none">
-                <svg class="w-4 h-4 mx-2 fill-current" viewBox="0 0 24 24">
-                    <path
-                        d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z">
-                    </path>
-                </svg>
-
+                class="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100 focus:bg-gray-100 focus:outline-none">
+                    <img src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
                 <span class="hidden mx-2 sm:inline">Sign in with Google</span>
             </button>
         </div>
