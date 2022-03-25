@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+     <!-- Google Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link
+       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
+       rel="stylesheet"
+     />
+     <style>
+       body {
+         font-family: "Montserrat", sans-serif;
+       }
+     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                brand: {
+                  50: "#f6f9fe",
+                  100: "#eef4fc",
+                  200: "#dce5f6",
+                  300: "#c2d0ea",
+                  400: "#869bc6",
+                  500: "#556b9a",
+                  600: "#3a4d76",
+                  700: "#263962",
+                  800: "#132146",
+                  900: "#040d30",
+                },
+              },
+            },
+          },
+        };
+      </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body class="bg-black">
+    <div class="to-brand-900 absolute inset-0 bg-gradient-to-t from-black py-10">
+    <div class="mx-auto w-full max-w-2xl rounded-xl bg-white p-6 shadow-lg">
+        <h1 class="text-brand-900 mb-4 text-2xl font-bold">Sign Up</h1>
+
+        <form class="mt-6">
+            <div>
+                <label class="text-brand-900 mb-2 block text-sm font-medium">Email</label>
+                <input type="text"
+                placeholder="admin@appwrite.io" class="bg-brand-100 ring-brand-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+            </div>
+
+            <div class="mt-4">
+                
+                    <label class="text-brand-900 mb-2 block text-sm font-medium">Password</label>
+            
+
+                <input type="password"
+                placeholder="Password" class="bg-brand-100 ring-brand-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+            </div>
+            <div class="mt-6 flex justify-center">
+                <button
+                    class="ring-brand-200 bg-brand-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
+                    Sign Up
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
