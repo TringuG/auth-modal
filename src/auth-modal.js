@@ -1,5 +1,31 @@
-(() => {
-  // TODO: Load fonts
+(async () => {
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `<style> @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');</style>`
+  );
+
+  tailwind.config = tailwind.config || {};
+  tailwind.config = {
+    ...tailwind.config,
+    theme: {
+      extend: {
+        colors: {
+          "auth-gray": {
+            50: "#f6f9fe",
+            100: "#eef4fc",
+            200: "#dce5f6",
+            300: "#c2d0ea",
+            400: "#869bc6",
+            500: "#556b9a",
+            600: "#3a4d76",
+            700: "#263962",
+            800: "#132146",
+            900: "#040d30",
+          },
+        },
+      },
+    },
+  };
 
   const signIn = `
 <div>
@@ -199,7 +225,7 @@
 
   const authModal = `
 <template x-if="$store.authModal.opened">
-  <div class="fixed inset-0">
+  <div class="fixed inset-0" style="font-family: 'Montserrat', sans-serif;">
     <div class="w-full h-full relative">
       <div class="absolute inset-0 bg-black opacity-50"></div>
       <div class="relative w-full h-full pt-10">
