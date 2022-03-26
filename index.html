@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auth Modal Example</title>
+
+    <!-- Tailwind Setup -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "auth-gray": {
+                50: "#f6f9fe",
+                100: "#eef4fc",
+                200: "#dce5f6",
+                300: "#c2d0ea",
+                400: "#869bc6",
+                500: "#556b9a",
+                600: "#3a4d76",
+                700: "#263962",
+                800: "#132146",
+                900: "#040d30",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Alpine.js Setup -->
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
+    <!-- Auth Modal Setup -->
+    <script src="auth-modal.js" defer></script>
+  </head>
+  <body class="bg-black">
+    <!-- Example of open modal button -->
+    <div
+      x-data="{}"
+      class="to-auth-gray-900 absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black"
+    >
+      <button
+        x-on:click="$store.authModal.open()"
+        class="rounded-lg bg-white hover:bg-auth-gray-100 text-auth-gray-800 px-12 py-3 font-bold text-lg"
+      >
+        Open Auth Modal
+      </button>
+    </div>
+  </body>
+</html>

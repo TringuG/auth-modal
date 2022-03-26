@@ -18,7 +18,7 @@
           theme: {
             extend: {
               colors: {
-                brand: {
+                'auth-gray': {
                   50: "#f6f9fe",
                   100: "#eef4fc",
                   200: "#dce5f6",
@@ -41,10 +41,10 @@
     <title>Magic Link</title>
 </head>
 <body class="bg-black">
-    <div class="to-brand-900 absolute inset-0 bg-gradient-to-t from-black py-10">
+    <div class="to-auth-gray-900 absolute inset-0 bg-gradient-to-t from-black py-10">
     <div class="mx-auto w-full max-w-2xl rounded-xl bg-white p-6 shadow-lg">
       <div class="flex justify-between">
-        <h1 class="text-brand-900 mb-4 text-2xl font-bold">Sign In with Magic Link</h1>
+        <h1 class="text-auth-gray-900 mb-4 text-2xl font-bold">Sign In with Magic Link</h1>
             <button class="p-1 px-4 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -53,13 +53,13 @@
           </div>
         <form class="mt-6">
             <div>
-                <label class="text-brand-900 mb-2 block text-sm font-medium">Email</label>
+                <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Email</label>
                 <input type="email"
-                placeholder="admin@appwrite.io" class="bg-brand-100 ring-brand-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+                placeholder="admin@appwrite.io" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
             </div>
             <div class="mt-6 flex justify-center">
                 <button
-                    class="ring-brand-200 bg-brand-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
+                    class="ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
                     Send Magic Link
                 </button>
             </div>
