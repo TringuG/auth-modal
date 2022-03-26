@@ -1,35 +1,10 @@
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][https://github.com/TringuG/auth-modal/graphs/contributors]
-[![Forks][forks-shield]][https://github.com/TringuG/auth-modal/network/members]
-[![Stargazers][stars-shield]][https://github.com/TringuG/auth-modal/stargazers]
-[![Issues][issues-shield]][https://github.com/TringuG/auth-modal/issues]
-[![MIT License][license-shield]][https://github.com/TringuG/auth-modal/blob/master/LICENSE.txt]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="hhttps://github.com/TringuG/auth-modal">
-    <img src="logo.png" alt="Logo" width="80" height="80">
+    <img src="logo.png" alt="Logo" width="120" height="120">
   </a>
 
 <h3 align="center">Auth Modal</h3>
