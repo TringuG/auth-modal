@@ -17,12 +17,11 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![Contributors][contributors-shield]][https://github.com/TringuG/auth-modal/graphs/contributors]
+[![Forks][forks-shield]][https://github.com/TringuG/auth-modal/network/members]
+[![Stargazers][stars-shield]][https://github.com/TringuG/auth-modal/stargazers]
+[![Issues][issues-shield]][https://github.com/TringuG/auth-modal/issues]
+[![MIT License][license-shield]][https://github.com/TringuG/auth-modal/blob/master/LICENSE.txt]
 
 
 
@@ -30,7 +29,7 @@
 <br />
 <div align="center">
   <a href="hhttps://github.com/TringuG/auth-modal">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Auth Modal</h3>
