@@ -139,6 +139,188 @@
     </div>
   </div>
 
+  <div class="flex justify-center items-center space-x-4 pt-4">
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+      <img src="https://cdn.cdnlogo.com/logos/a/1/amazon-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Amazon</span>
+      </button>
+    </div>
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-white transition-colors duration-200 transform bg-[#555555] border-2 border-[#555555] rounded-md hover:bg-black hover:border-black">
+        <svg class="w-4 h-4 mx-2 fill-current" viewBox="0 0 24 24">
+        <path d="M22 17.607c-.786 2.28-3.139 6.317-5.563 6.361-1.608.031-2.125-.953-3.963-.953-1.837 0-2.412.923-3.932.983-2.572.099-6.542-5.827-6.542-10.995 0-4.747 3.308-7.1 6.198-7.143 1.55-.028 3.014 1.045 3.959 1.045.949 0 2.727-1.29 4.596-1.101.782.033 2.979.315 4.389 2.377-3.741 2.442-3.158 7.549.858 9.426zm-5.222-17.607c-2.826.114-5.132 3.079-4.81 5.531 2.612.203 5.118-2.725 4.81-5.531z"/>
+        </svg>
+        <span class="mx-2 sm:inline">Sign in with Apple</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center space-x-4 pt-4">
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/b/74/bitbucket-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with BitBucker</span>
+    </button>
+  </div>
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://i.imgur.com/Wa3LhnU.png" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Bitly</span>
+    </button>
+  </div>
+</div>
+
+<div class="flex justify-center items-center space-x-4 pt-4">
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+      <img src="https://cdn.cdnlogo.com/logos/b/39/box.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Box</span>
+      </button>
+    </div>
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+      <img src="https://cdn.cdnlogo.com/logos/d/38/discord.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Discord</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center space-x-4 pt-4">
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+      <img src="https://cdn.cdnlogo.com/logos/d/36/dropbox.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Dropbox</span>
+      </button>
+    </div>
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-white transition-colors duration-200 transform bg-[#898F9C] border-2 border-[#898F9C] rounded-md hover:bg-black hover:border-black">
+      <img src="https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Facebook</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center space-x-4 pt-4">
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+      <img src="https://cdn.cdnlogo.com/logos/g/37/gitlab.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Gitlab</span>
+      </button>
+    </div>
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+      <img src="https://cdn.cdnlogo.com/logos/l/66/linkedin-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Linkedin</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center space-x-4 pt-4">
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-white transition-colors duration-200 transform bg-[#737373] border-2 border-[#737373] rounded-md hover:bg-gray-100 hover:text-black">
+      <img src="https://cdn.cdnlogo.com/logos/m/95/microsoft.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Microsoft</span>
+      </button>
+    </div>
+    <div class="flex items-center w-full">
+      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+      <img src="https://cdn.cdnlogo.com/logos/n/50/notion.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Notion</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center space-x-4 pt-4">
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/p/42/paypal-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with PayPal</span>
+    </button>
+  </div>
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/s/3/salesforce.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Salesforce</span>
+    </button>
+  </div>
+</div>
+
+<div class="flex justify-center items-center space-x-4 pt-4">
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/s/40/slack-new.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Slack</span>
+    </button>
+  </div>
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/s/89/spotify.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Spotify</span>
+    </button>
+  </div>
+</div>
+
+<div class="flex justify-center items-center space-x-4 pt-4">
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://svgshare.com/i/fec.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Tradeshift</span>
+    </button>
+  </div>
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/t/25/twitch-purple.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Twitch</span>
+    </button>
+  </div>
+</div>
+
+<div class="flex justify-center items-center space-x-4 pt-4">
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/v/7/vk.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with VK</span>
+    </button>
+  </div>
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/y/53/yahoo-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Yahoo</span>
+    </button>
+  </div>
+</div>
+
+<div class="flex justify-center items-center space-x-4 pt-4">
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/m/11/microsoft-yammer.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Yammer</span>
+    </button>
+  </div>
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://svgshare.com/i/ff4.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Yandex</span>
+    </button>
+  </div>
+</div>
+
+<div class="flex justify-center items-center space-x-4 pt-4">
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/w/94/wordpress-blue.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with WordPress</span>
+    </button>
+  </div>
+  <div class="flex items-center w-full">
+    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+    <img src="https://cdn.cdnlogo.com/logos/s/44/stripe.svg" class="w-4 h-4 mx-2 fill-current"></img>
+    <span class="mx-2 sm:inline">Sign in with Stripe</span>
+    </button>
+  </div>
+</div>
+
   <div class="mt-8 text-xs text-center text-gray-600 flex items-center justify-center space-x-1">
     <p class="">Don't have an account?</p>
     <button type="button" x-on:click="$store.authModal.goTo('signUp')" class="font-medium text-brand-600 underline hover:text-brand-900">
