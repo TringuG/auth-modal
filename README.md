@@ -118,6 +118,7 @@
 <!-- LICENSE -->
 ## License
 
+Distributed under the MIT License. See <code>LICENSE</code> for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
