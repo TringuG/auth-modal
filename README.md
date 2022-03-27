@@ -56,12 +56,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+<details>
+<summary>Screens</summary>
 ![Open SIGIN menu][a1]
 ![SigIn][a2]
 ![MagicLink][a3]
 ![SignUp][a4]
 ![MyAccount][a5]
-
+</details>
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
