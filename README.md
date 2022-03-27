@@ -58,8 +58,9 @@
 
 [![Open SIGIN menu][images/A-1.png]]
 [![SigIn][images/A-2.png]]
-[![SignUp][images/A-3.png]]
-[![MyAccount][images/A-4.png]]
+[![MagicLink][images/A-3.png]]
+[![SignUp][images/A-4.png]]
+[![MyAccount][images/A-5.png]]
 
 
 
