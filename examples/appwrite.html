@@ -13,6 +13,20 @@
     <!-- Add Auth Modal Library -->
     <!-- <script src="https://cdn.jsdelivr.net/gh/tringug/auth-modal/src/auth-modal.js" defer></script> -->
     <script src="../src/auth-modal.js" defer></script>
+
+    <!-- Add Adapter SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@7.0.0"></script>
+
+    <!-- Configure Auth Modal -->
+    <script>
+      window.authModal = {
+        adapter: "appwrite",
+        config: {
+          endpoint: "https://demo.appwrite.io/v1",
+          projectId: "authModal",
+        },
+      };
+    </script>
   </head>
   <body class="bg-black">
     <!-- Example of open modal button -->

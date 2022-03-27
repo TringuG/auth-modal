@@ -1,4 +1,40 @@
 (async () => {
+  const AppwriteAdapter = () => {
+    return {
+      sdk: null,
+
+      async setUp(config) {
+        this.sdk = new Appwrite(config);
+        this.sdk.setEndpoint(config.endpoint).setProject(config.projectId);
+      },
+
+      // TODO: Start using
+      getProviders() {
+        return ["google", "github"];
+      },
+
+      async getProfile() {
+        return await sdk.account.get();
+      },
+
+      async signIn(email, password) {
+        await sdk.account.createSession(email, password);
+      },
+
+      async signInOauth(provider) {
+        sdk.account.createOAuth2Session(provider);
+      },
+
+      async signInMagicLink(email) {
+        await sdk.account.createMagicURLSession("unique()", email);
+      },
+
+      async signUp(name, email, password) {
+        await sdk.account.create("unique()", email, password, name);
+      },
+    };
+  };
+
   document.body.insertAdjacentHTML(
     "beforeend",
     `<style> @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');</style>`
@@ -166,7 +202,6 @@
 
   Alpine.store("authModal", {
     opened: false,
-
     currentPage: null,
 
     // TODO: profile
@@ -198,8 +233,24 @@
       },
     ],
 
-    init() {
+    async init() {
       this.goTo("signIn");
+
+      await this.prepareAdapter();
+    },
+
+    async prepareAdapter() {
+      const { config, adapter } = window.authModal;
+
+      switch (adapter) {
+        case "appwrite":
+          this.adapter = AppwriteAdapter();
+          break;
+        default:
+          throw new Errror("Adapter not supported by Auth Modal.");
+      }
+
+      await this.adapter.setUp(config);
     },
 
     open(page) {
