@@ -56,6 +56,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 [![Open SIGIN menu][images/A-1.png]]
 [![SigIn][images/A-2.png]]
 [![MagicLink][images/A-3.png]]
