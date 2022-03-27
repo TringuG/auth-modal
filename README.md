@@ -58,11 +58,15 @@
 
 <details>
 <summary>Screens</summary>
+<ol>
+
 ![Open SIGIN menu][a1]
 ![SigIn][a2]
 ![MagicLink][a3]
 ![SignUp][a4]
 ![MyAccount][a5]
+
+</ol>
 </details>
 
 
