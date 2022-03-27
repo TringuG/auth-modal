@@ -144,18 +144,6 @@ Project Link: [https://github.com/TringuG/auth-modal](https://github.com/TringuG
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
 [a1]: images/A-1.png
 [a2]: images/A-2.png
 [a3]: images/A-3.png
