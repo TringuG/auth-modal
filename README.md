@@ -56,12 +56,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-[![Open SIGIN menu][a1]]
-[![SigIn][a2]]
-[![MagicLink][a3]]
-[![SignUp][a4]]
-[![MyAccount][a5]]
+[Open SIGIN menu][a1]
+[SigIn][a2]
+[MagicLink][a3]
+[SignUp][a4]
+[MyAccount][a5]
 
 
 
