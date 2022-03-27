@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="hhttps://github.com/TringuG/auth-modal">
-    <img src="logo.png" alt="Logo" width="890" height="360">
+    <img src="logo.png" alt="Logo" width="445" height="180">
   </a>
 
 <h3 align="center">Auth Modal</h3>
