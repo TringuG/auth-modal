@@ -70,9 +70,8 @@
 
 ### Built With
 
-* [HTML](https://html.com/)
-* [TailwindCSS](https://tailwindcss.com/)
 * [Alpine.js](https://alpinejs.dev/)
+* [TailwindCSS](https://tailwindcss.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -131,6 +130,10 @@ Distributed under the MIT License. See <code>LICENSE</code> for more information
 <!-- CONTACT -->
 ## Contact
 
+Richard Nálepka - [TringuG](https://github.com/TringuG) - Discord: <code>TringuG#1484</code>
+Matej Bačo - [Meldiron](https://github.com/Meldiron) - Discord: <code>Meldiron#1111</code>
+
+Project Link: [https://github.com/TringuG/auth-modal](https://github.com/TringuG/auth-modal)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
