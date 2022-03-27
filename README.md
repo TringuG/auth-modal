@@ -57,11 +57,11 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
-[![Open SIGIN menu][images/A-1.png]]
-[![SigIn][images/A-2.png]]
-[![MagicLink][images/A-3.png]]
-[![SignUp][images/A-4.png]]
-[![MyAccount][images/A-5.png]]
+[![Open SIGIN menu][a1]]
+[![SigIn][a2]]
+[![MagicLink][a3]]
+[![SignUp][a4]]
+[![MyAccount][a5]]
 
 
 
@@ -146,3 +146,10 @@ Distributed under the MIT License. See <code>LICENSE</code> for more information
 * []()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+
+[a1]: images/A-1.png
+[a2]: images/A-2.png
+[a3]: images/A-3.png
+[a4]: images/A-4.png
+[a5]: images/A-5.png
