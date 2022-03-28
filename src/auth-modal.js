@@ -8,13 +8,17 @@
         this.sdk.setEndpoint(config.endpoint).setProject(config.projectId);
       },
 
-      // TODO: Start using
+      // TODO: Start using, and add config to config
       getProviders() {
         return ["google", "github"];
       },
 
       async getProfile() {
         return await this.sdk.account.get();
+      },
+
+      async logOut() {
+        return await this.sdk.account.deleteSession("current");
       },
 
       async signIn(email, password) {
@@ -64,7 +68,7 @@
   };
 
   const signIn = `
-<div>
+<div x-init="$store.authModal.signIn.guard()">
   <form class="mt-6" @submit.prevent="$store.authModal.signIn.onSubmit()">
     <div>
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Email</label>
@@ -107,13 +111,17 @@
     <p x-text="$store.authModal.signIn.errorMsg" class="font-light mt-6 text-center text-red-500"></p>
   </template>
 
-  <div class="flex items-center justify-between mt-6">
+  <div class="flex items-center justify-between mt-6 mb-6">
     <span class="w-2/5 border-b"></span>
     <p class="text-sm text-center text-black uppercase">or</p>
     <span class="w-2/5 border-b"></span>
   </div>
 
-  <div class="flex items-center mt-6 mb-4">
+${
+  /*
+  Magic Link implementation:
+
+  <div class="flex items-center mb-4">
     <button x-on:click="$store.authModal.goTo('magicLink')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium rounded-md ring-auth-gray-100 hover:bg-auth-gray-200 bg-auth-gray-100 text-auth-gray-900 focus:ring-4 hover:border-auth-gray-100 focus:bg-auth-gray-100 focus:border-auth-gray-100 focus:outline-none">
       <svg class="w-4 h-4 font-extrabold mx-2 fill-current" viewBox="0 0 24 24">
         <path d="M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z"/>
@@ -121,6 +129,9 @@
       <span class="mx-2 sm:inline">Sign in with Magic Link</span>
     </button>
   </div>
+  */
+  ""
+}
 
   <div class="flex justify-center items-center space-x-4">
     <div class="flex items-center w-full">
@@ -160,7 +171,7 @@
   <div class="flex items-center w-full">
     <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
     <img src="https://cdn.cdnlogo.com/logos/b/74/bitbucket-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with BitBucker</span>
+    <span class="mx-2 sm:inline">Sign in with BitBucket</span>
     </button>
   </div>
   <div class="flex items-center w-full">
@@ -331,28 +342,54 @@
   `;
 
   const signUp = `
-<div>
-  <form class="mt-6">
+<div x-init="$store.authModal.signUp.guard()">
+  <form class="mt-6" @submit.prevent="$store.authModal.signUp.onSubmit()">
     <div>
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Name</label>
-      <input type="text" placeholder="John Walker" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+      <input x-model="$store.authModal.signUp.name" required="required" type="text" placeholder="John Walker" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
     </div>
 
     <div class="mt-4">
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Email</label>
-      <input type="email" placeholder="admin@appwrite.io" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+      <input x-model="$store.authModal.signUp.email" required="required" type="email" placeholder="admin@appwrite.io" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
     </div>
 
     <div class="mt-4">
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Password</label>
-      <input type="password" placeholder="Password" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+      <input x-model="$store.authModal.signUp.password" required="required" type="password" placeholder="Password" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
     </div>
 
     <div class="mt-6 flex justify-center">
-      <button type="button" x-on:click="$store.authModal.goTo('profile')" class="ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
-        Sign Up
+      <button type="submit" x-bind:disabled="$store.authModal.signUp.isLoading" class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
+        <p>Sign Up</p>
+        <template hidden x-if="$store.authModal.signUp.isLoading">
+          <svg
+            class="w-4 h-4 animate-spin"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        </template>
       </button>
     </div>
+
+    <template hidden x-if="$store.authModal.signUp.errorMsg">
+      <p x-text="$store.authModal.signUp.errorMsg" class="font-light mt-6 text-center text-red-500"></p>
+    </template>
   </form>
 
   <div class="mt-8 text-xs text-center text-gray-600 flex items-center justify-center space-x-1">
@@ -397,14 +434,49 @@
   `;
 
   const profile = `
-<div x-data x-init="await $store.authModal.profile.fetch()">
-  <p class="text-sm text-left text-gray-500 mb-2">Logged in as</p>
-  <p x-text="$store.authModal.profile.profile.email" class="text-lg text-left text-black mb-2"></p>
-  <div class="mt-6 flex justify-center">
-    <button type="button" x-on:click="$store.authModal.goTo('signIn')" class="ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
-      Log Out
-    </button>
-  </div>
+<div x-data x-init="$store.authModal.profile.guard()">
+  <template x-if="$store.authModal.profile.profile">
+    <div>
+      <p class="text-sm text-gray-500 mb-2">Logged in as</p>
+      <p>
+        <span x-text="$store.authModal.profile.profile.name" class="text-lg text-black"></span>
+        <span class="text-auth-gray-400">at</span>
+        <span x-text="$store.authModal.profile.profile.email" class="text-lg text-black"></span>
+      </p>
+      
+      <div class="mt-6 flex justify-center">
+        <button x-on:click="$store.authModal.profile.logOut()" x-bind:disabled="$store.authModal.profile.isLoading"  type="button" class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
+          <p>Log Out</p>
+          <template hidden x-if="$store.authModal.profile.isLoading">
+            <svg
+              class="w-4 h-4 animate-spin"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </template>
+        </button>
+      </div>
+
+      <template hidden x-if="$store.authModal.profile.errorMsg">
+        <p x-text="$store.authModal.profile.errorMsg" class="font-light mt-6 text-center text-red-500"></p>
+      </template>
+    </div>
+  </template>
 </div>
 `;
 
@@ -412,14 +484,46 @@
     return {
       profile: null,
 
-      async fetch() {
-        const store = Alpine.store("authModal");
-        const adapter = store.adapter;
+      isLoading: false,
+      errorMsg: null,
 
-        try {
-          this.profile = await adapter.getProfile();
-        } catch (err) {
+      async guard() {
+        const store = Alpine.store("authModal");
+        this.profile = await store.getProfile();
+
+        if (!this.profile) {
           store.goTo("signIn");
+        }
+      },
+
+      async logOut() {
+        try {
+          if (this.isLoading) {
+            return;
+          }
+
+          this.isLoading = true;
+          this.errorMsg = null;
+
+          const store = Alpine.store("authModal");
+          const adapter = store.adapter;
+
+          if (!adapter) {
+            throw new Error("No adapter loaded.");
+          }
+
+          if (!adapter.logOut) {
+            throw new Error("Adapter does not support this method.");
+          }
+
+          await adapter.logOut();
+          await store.getProfile(true);
+
+          store.goTo("signIn");
+        } catch (err) {
+          this.errorMsg = err.message || err;
+        } finally {
+          this.isLoading = false;
         }
       },
     };
@@ -432,6 +536,18 @@
 
       errorMsg: null,
       isLoading: false,
+
+      async guard() {
+        this.email = "";
+        this.password = "";
+
+        const store = Alpine.store("authModal");
+        const profile = await store.getProfile();
+
+        if (profile) {
+          store.goTo("profile");
+        }
+      },
 
       async onSubmit() {
         try {
@@ -453,7 +569,7 @@
             throw new Error("Adapter does not support this method.");
           }
 
-          const _response = await adapter.signIn(this.email, this.password);
+          await adapter.signIn(this.email, this.password);
 
           store.goTo("profile");
         } catch (err) {
@@ -469,9 +585,67 @@
     };
   };
 
+  const signUpStore = () => {
+    return {
+      name: "",
+      email: "",
+      password: "",
+
+      errorMsg: null,
+      isLoading: false,
+
+      async guard() {
+        this.name = "";
+        this.email = "";
+        this.password = "";
+
+        const store = Alpine.store("authModal");
+        const profile = await store.getProfile();
+
+        if (profile) {
+          store.goTo("profile");
+        }
+      },
+
+      async onSubmit() {
+        try {
+          if (this.isLoading) {
+            return;
+          }
+
+          this.isLoading = true;
+          this.errorMsg = null;
+
+          const store = Alpine.store("authModal");
+          const adapter = store.adapter;
+
+          if (!adapter) {
+            throw new Error("No adapter loaded.");
+          }
+
+          if (!adapter.signUp || !adapter.signIn) {
+            throw new Error("Adapter does not support this method.");
+          }
+
+          await adapter.signUp(this.name, this.email, this.password);
+          await adapter.signIn(this.email, this.password);
+
+          store.goTo("profile");
+        } catch (err) {
+          this.errorMsg = err.message || err;
+        } finally {
+          this.isLoading = false;
+        }
+      },
+    };
+  };
+
   Alpine.store("authModal", {
     signIn: signInStore(),
+    signUp: signUpStore(),
     profile: profileStore(),
+
+    accountProfile: null,
 
     adapter: null,
 
@@ -506,6 +680,20 @@
         template: profile,
       },
     ],
+
+    async getProfile(force = false) {
+      if (this.accountProfile && !force) {
+        return this.accountProfile;
+      }
+
+      try {
+        this.accountProfile = await this.adapter.getProfile();
+      } catch (err) {
+        this.accountProfile = null;
+      }
+
+      return this.accountProfile;
+    },
 
     async init() {
       this.goTo("signIn");
@@ -552,9 +740,9 @@
 <template x-if="$store.authModal.opened">
   <div class="fixed inset-0" style="font-family: 'Montserrat', sans-serif;">
     <div class="w-full h-full relative">
-      <div class="absolute inset-0 bg-black opacity-50"></div>
-      <div class="relative w-full h-full pt-10">
-        <div class="mx-auto w-full max-w-2xl rounded-xl bg-white p-6">
+      <div class="absolute inset-0 bg-black opacity-50" x-on:click="$store.authModal.close()"></div>
+      <div class="relative w-full h-full pt-10 overflow-y-auto pb-10 pointer-events-none">
+        <div class="mx-auto w-full max-w-2xl rounded-xl bg-white p-6 pointer-events-auto">
           <div class="flex justify-between items-center">
             <h1 class="text-auth-gray-900 mb-4 text-2xl font-bold" x-text="$store.authModal.currentPage.title"></h1>
             <button type="button" x-on:click="$store.authModal.close()" class="p-3 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
@@ -574,4 +762,9 @@
   `;
 
   document.body.insertAdjacentHTML("beforeend", authModal);
+
+  // To ensure we show profile if already logged in, without waiting
+  // Fetch profile on background when page loads
+  const store = Alpine.store("authModal");
+  store.getProfile(true);
 })();
