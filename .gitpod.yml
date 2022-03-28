@@ -1,7 +1,7 @@
 # Commands to start on workspace startup
 tasks:
   - init: echo "No init required"
-    command: npm -y http-server
+    command: npx -y http-server
 # Ports to expose on workspace startup
 ports:
   - port: 8080
