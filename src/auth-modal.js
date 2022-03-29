@@ -3,14 +3,19 @@
     return {
       sdk: null,
 
+      oauthSuccess: null,
+      oauthError: null,
+
       async setUp(config) {
         this.sdk = new Appwrite(config);
         this.sdk.setEndpoint(config.endpoint).setProject(config.projectId);
+
+        this.oauthSuccess = config.oauthSuccessUrl;
+        this.oauthError = config.oauthErrorUrl;
       },
 
-      // TODO: Start using, and add config to config
       getProviders() {
-        return ["google", "github"];
+        return ['amazon', 'apple', 'bitbucket', 'bitly', 'box', 'discord', 'dropbox', 'facebook', 'github', 'gitlab', 'google', 'linkedin', 'microsoft', 'notion', 'paypal', 'paypalSandbox', 'salesforce', 'slack', 'spotify', 'tradeshift', 'tradeshiftBox', 'twitch', 'vk', 'yahoo', 'yammer', 'yandex', 'wordpress', 'stripe'];
       },
 
       async getProfile() {
@@ -26,7 +31,7 @@
       },
 
       async signInOauth(provider) {
-        return await this.sdk.account.createOAuth2Session(provider);
+        return await this.sdk.account.createOAuth2Session(provider, this.oauthSuccess, this.oauthError);
       },
 
       async signInMagicLink(email) {
@@ -65,6 +70,179 @@
         },
       },
     },
+  };
+
+  const providers = {
+    amazon: `
+    <button x-on:click="$store.authModal.signIn.onLodingOauth('amazon')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+      <img src="https://cdn.cdnlogo.com/logos/a/1/amazon-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+      <span class="mx-2 sm:inline">Sign in with Amazon</span>
+    </button>
+    `,
+    apple: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('apple')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <svg class="w-4 h-4 mx-2 fill-current" viewBox="0 0 24 24">
+        <path d="M22 17.607c-.786 2.28-3.139 6.317-5.563 6.361-1.608.031-2.125-.953-3.963-.953-1.837 0-2.412.923-3.932.983-2.572.099-6.542-5.827-6.542-10.995 0-4.747 3.308-7.1 6.198-7.143 1.55-.028 3.014 1.045 3.959 1.045.949 0 2.727-1.29 4.596-1.101.782.033 2.979.315 4.389 2.377-3.741 2.442-3.158 7.549.858 9.426zm-5.222-17.607c-2.826.114-5.132 3.079-4.81 5.531 2.612.203 5.118-2.725 4.81-5.531z"/>
+        </svg>
+        <span class="mx-2 sm:inline">Sign in with Apple</span>
+      </button>
+    `,
+    bitbucket: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('bitbucket')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/b/74/bitbucket-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with BitBucket</span>
+      </button>
+    `,
+    bitly: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('bitly')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/b/57/bitly.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Bitly</span>
+      </button>
+    `,
+    box: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('box')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/b/39/box.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Box</span>
+      </button>
+    `,
+    discord: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('discord')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/d/38/discord.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Discord</span>
+      </button>
+    `,
+    dropbox: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('dropbox')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/d/36/dropbox.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Dropbox</span>
+      </button>
+    `,
+    facebook: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('facebook')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Facebook</span>
+      </button>
+    `,
+    github: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('github')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/g/69/github-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with GitHub</span>
+      </button>
+    `,
+    gitlab: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('gitlab')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/g/37/gitlab.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with GitLab</span>
+      </button>
+    `,
+    google: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('google')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Google</span>
+      </button>
+    `,
+    linkedin: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('linkedin')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/l/66/linkedin-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Linkedin</span>
+      </button>
+    `,
+    microsoft: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('microsoft')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/m/95/microsoft.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Microsoft</span>
+      </button>
+    `,
+    notion: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('notion')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/n/50/notion.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Notion</span>
+      </button>
+    `,
+    paypal: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('paypal')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/p/42/paypal-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with PayPal</span>
+      </button>
+    `,
+    paypalSandbox: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('paypalSandbox')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/p/42/paypal-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with PayPal (Box)</span>
+      </button>
+    `,
+    salesforce: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('salesforce')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/s/3/salesforce.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Salesforce</span>
+      </button>
+    `,
+    slack: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('slack')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/s/40/slack-new.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Slack</span>
+      </button>
+    `,
+    spotify: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('spotify')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/s/89/spotify.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Spotify</span>
+      </button>
+    `,
+    tradeshift: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('tradeshift')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://svgshare.com/i/fec.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Tradeshift</span>
+      </button>
+    `,
+    tradeshiftBox: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('tradeshiftBox')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://svgshare.com/i/fec.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Tradeshift (Box)</span>
+      </button>
+    `,
+    twitch: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('twitch')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/t/25/twitch-purple.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Twitch</span>
+      </button>
+    `,
+    vk: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('vk')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/v/7/vk.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with VK</span>
+      </button>
+    `,
+    yahoo: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('yahoo')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/y/53/yahoo-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Yahoo</span>
+      </button>
+    `,
+    yammer: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('yammer')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/m/11/microsoft-yammer.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Yammer</span>
+      </button>
+    `,
+    yandex: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('yandex')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://svgshare.com/i/ff4.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Yandex</span>
+      </button>
+    `,
+    wordpress: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('wordpress')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/w/94/wordpress-blue.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with WordPress</span>
+      </button>
+    `,
+    stripe: `
+      <button x-on:click="$store.authModal.signIn.onLodingOauth('stripe')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
+        <img src="https://cdn.cdnlogo.com/logos/s/44/stripe.svg" class="w-4 h-4 mx-2 fill-current"></img>
+        <span class="mx-2 sm:inline">Sign in with Stripe</span>
+      </button>
+    `
   };
 
   const signIn = `
@@ -117,10 +295,6 @@
     <span class="w-2/5 border-b"></span>
   </div>
 
-${
-  /*
-  Magic Link implementation:
-
   <div class="flex items-center mb-4">
     <button x-on:click="$store.authModal.goTo('magicLink')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium rounded-md ring-auth-gray-100 hover:bg-auth-gray-200 bg-auth-gray-100 text-auth-gray-900 focus:ring-4 hover:border-auth-gray-100 focus:bg-auth-gray-100 focus:border-auth-gray-100 focus:outline-none">
       <svg class="w-4 h-4 font-extrabold mx-2 fill-current" viewBox="0 0 24 24">
@@ -129,208 +303,14 @@ ${
       <span class="mx-2 sm:inline">Sign in with Magic Link</span>
     </button>
   </div>
-  */
-  ""
-}
 
-  <div class="flex justify-center items-center space-x-4">
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Google</span>
-      </button>
+  <template x-if="$store.authModal.allowedOauthProviders.length > 0">
+    <div class="grid grid-cols-12 gap-4">
+      <template x-for="provider in $store.authModal.allowedOauthProviders">
+        <div x-html="provider" class="col-span-6"></div>
+      </template>
     </div>
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-        <svg class="w-4 h-4 mx-2 fill-current" viewBox="0 0 24 24">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-        <span class="mx-2 sm:inline">Sign in with Github</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="flex justify-center items-center space-x-4 pt-4">
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.cdnlogo.com/logos/a/1/amazon-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Amazon</span>
-      </button>
-    </div>
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-        <svg class="w-4 h-4 mx-2 fill-current" viewBox="0 0 24 24">
-        <path d="M22 17.607c-.786 2.28-3.139 6.317-5.563 6.361-1.608.031-2.125-.953-3.963-.953-1.837 0-2.412.923-3.932.983-2.572.099-6.542-5.827-6.542-10.995 0-4.747 3.308-7.1 6.198-7.143 1.55-.028 3.014 1.045 3.959 1.045.949 0 2.727-1.29 4.596-1.101.782.033 2.979.315 4.389 2.377-3.741 2.442-3.158 7.549.858 9.426zm-5.222-17.607c-2.826.114-5.132 3.079-4.81 5.531 2.612.203 5.118-2.725 4.81-5.531z"/>
-        </svg>
-        <span class="mx-2 sm:inline">Sign in with Apple</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="flex justify-center items-center space-x-4 pt-4">
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/b/74/bitbucket-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with BitBucket</span>
-    </button>
-  </div>
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://i.imgur.com/Wa3LhnU.png" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Bitly</span>
-    </button>
-  </div>
-</div>
-
-<div class="flex justify-center items-center space-x-4 pt-4">
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.cdnlogo.com/logos/b/39/box.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Box</span>
-      </button>
-    </div>
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.cdnlogo.com/logos/d/38/discord.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Discord</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="flex justify-center items-center space-x-4 pt-4">
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.cdnlogo.com/logos/d/36/dropbox.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Dropbox</span>
-      </button>
-    </div>
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.usbrandcolors.com/images/logos/facebook-logo.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Facebook</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="flex justify-center items-center space-x-4 pt-4">
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.cdnlogo.com/logos/g/37/gitlab.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Gitlab</span>
-      </button>
-    </div>
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.cdnlogo.com/logos/l/66/linkedin-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Linkedin</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="flex justify-center items-center space-x-4 pt-4">
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.cdnlogo.com/logos/m/95/microsoft.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Microsoft</span>
-      </button>
-    </div>
-    <div class="flex items-center w-full">
-      <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-      <img src="https://cdn.cdnlogo.com/logos/n/50/notion.svg" class="w-4 h-4 mx-2 fill-current"></img>
-      <span class="mx-2 sm:inline">Sign in with Notion</span>
-      </button>
-    </div>
-  </div>
-
-  <div class="flex justify-center items-center space-x-4 pt-4">
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/p/42/paypal-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with PayPal</span>
-    </button>
-  </div>
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/s/3/salesforce.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Salesforce</span>
-    </button>
-  </div>
-</div>
-
-<div class="flex justify-center items-center space-x-4 pt-4">
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/s/40/slack-new.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Slack</span>
-    </button>
-  </div>
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/s/89/spotify.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Spotify</span>
-    </button>
-  </div>
-</div>
-
-<div class="flex justify-center items-center space-x-4 pt-4">
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://svgshare.com/i/fec.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Tradeshift</span>
-    </button>
-  </div>
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/t/25/twitch-purple.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Twitch</span>
-    </button>
-  </div>
-</div>
-
-<div class="flex justify-center items-center space-x-4 pt-4">
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/v/7/vk.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with VK</span>
-    </button>
-  </div>
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/y/53/yahoo-icon.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Yahoo</span>
-    </button>
-  </div>
-</div>
-
-<div class="flex justify-center items-center space-x-4 pt-4">
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/m/11/microsoft-yammer.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Yammer</span>
-    </button>
-  </div>
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://svgshare.com/i/ff4.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Yandex</span>
-    </button>
-  </div>
-</div>
-
-<div class="flex justify-center items-center space-x-4 pt-4">
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/w/94/wordpress-blue.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with WordPress</span>
-    </button>
-  </div>
-  <div class="flex items-center w-full">
-    <button x-on:click="$store.authModal.goTo('profile')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium text-black transition-colors duration-200 transform bg-white border-2 border-gray-200 rounded-md hover:bg-gray-100">
-    <img src="https://cdn.cdnlogo.com/logos/s/44/stripe.svg" class="w-4 h-4 mx-2 fill-current"></img>
-    <span class="mx-2 sm:inline">Sign in with Stripe</span>
-    </button>
-  </div>
-</div>
+  </template>
 
   <div class="mt-8 text-xs text-center text-gray-600 flex items-center justify-center space-x-1">
     <p class="">Don't have an account?</p>
@@ -549,6 +529,35 @@ ${
         }
       },
 
+      async onLodingOauth(oauthAdapter) {
+        try {
+          if (this.isLoading) {
+            return;
+          }
+
+          this.isLoading = true;
+          this.errorMsg = null;
+
+          const store = Alpine.store("authModal");
+          const adapter = store.adapter;
+
+          if (!adapter) {
+            throw new Error("No adapter loaded.");
+          }
+
+          if (!adapter.signInOauth) {
+            throw new Error("Adapter does not support this method.");
+          }
+
+          await adapter.signInOauth(oauthAdapter);
+        } catch (err) {
+          this.errorMsg = err.message || err;
+          this.isLoading = false;
+        } finally {
+          // this.isLoading = false;
+        }
+      },
+
       async onSubmit() {
         try {
           if (this.isLoading) {
@@ -645,6 +654,8 @@ ${
     signUp: signUpStore(),
     profile: profileStore(),
 
+    allowedOauthProviders: [],
+
     accountProfile: null,
 
     adapter: null,
@@ -703,6 +714,7 @@ ${
 
     async prepareAdapter() {
       const { config, adapter } = window.authModal;
+      const oauths = window.authModal.oauths || [];
 
       switch (adapter) {
         case "appwrite":
@@ -713,6 +725,11 @@ ${
       }
 
       await this.adapter.setUp(config);
+
+      this.allowedOauthProviders = [];
+      const adapterProviders = this.adapter.getProviders();
+      const allowedProviders = Object.keys(providers).filter((provider) => adapterProviders.includes(provider)).filter((provider) => oauths.includes(provider));
+      this.allowedOauthProviders = allowedProviders.map((provider) => providers[provider]);
     },
 
     open(page) {
@@ -741,8 +758,8 @@ ${
   <div class="fixed inset-0" style="font-family: 'Montserrat', sans-serif;">
     <div class="w-full h-full relative">
       <div class="absolute inset-0 bg-black opacity-50" x-on:click="$store.authModal.close()"></div>
-      <div class="relative w-full h-full pt-10 overflow-y-auto pb-10 pointer-events-none">
-        <div class="mx-auto w-full max-w-2xl rounded-xl bg-white p-6 pointer-events-auto">
+      <div class="relative w-full h-full pt-10 overflow-y-auto pb-10" x-on:click="$store.authModal.close()">
+        <div class="mx-auto w-full max-w-2xl rounded-xl bg-white p-6" x-on:click="$event.stopPropagation()">
           <div class="flex justify-between items-center">
             <h1 class="text-auth-gray-900 mb-4 text-2xl font-bold" x-text="$store.authModal.currentPage.title"></h1>
             <button type="button" x-on:click="$store.authModal.close()" class="p-3 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">

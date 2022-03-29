@@ -24,7 +24,10 @@
         config: {
           endpoint: "https://demo.appwrite.io/v1",
           projectId: "authModal",
+          oauthSuccessUrl: window.location.origin + '/examples/appwrite.html',
+          oauthErrorUrl: window.location.origin + '/examples/appwrite.html',
         },
+        oauths: ["discord", "google"]
       };
     </script>
   </head>
