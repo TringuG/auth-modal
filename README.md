@@ -57,8 +57,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+### Screens of project
+
 <details>
-<summary>### Screens</summary>
+<summary>Screens</summary>
 <ol>
 
 ![Open SIGIN menu][a1]
