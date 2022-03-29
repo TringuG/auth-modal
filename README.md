@@ -32,6 +32,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#screens">Screens</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -57,7 +58,7 @@
 ## About The Project
 
 <details>
-<summary>Screens</summary>
+<summary>### Screens</summary>
 <ol>
 
 ![Open SIGIN menu][a1]
