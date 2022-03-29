@@ -32,7 +32,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#screens">Screens</a></li>
+        <li><a href="#screens-of-project">Screens</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
