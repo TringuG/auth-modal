@@ -15,7 +15,7 @@
     <a href="https://github.com/TringuG/auth-modal"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/TringuG/auth-modal">View Demo</a>
+    <a href="https://auth.tringug.xyz/">View Demo</a>
     ·
     <a href="https://github.com/TringuG/auth-modal/issues">Report Bug</a>
     ·
