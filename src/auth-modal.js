@@ -8,12 +8,12 @@
       magicUrl: null,
 
       async setUp(config) {
-        this.sdk = new Appwrite(config);
+        this.sdk = new Appwrite();
         this.sdk.setEndpoint(config.endpoint).setProject(config.projectId);
 
-        this.oauthSuccess = config.oauthSuccessUrl;
-        this.oauthError = config.oauthErrorUrl;
-        this.magicUrl = config.magicUrlRedirect;
+        this.oauthSuccess = window.authModal.oauthSuccessUrl;
+        this.oauthError = window.authModal.oauthErrorUrl;
+        this.magicUrl = window.authModal.magicUrlRedirect;
       },
 
       getProviders() {
@@ -293,7 +293,7 @@
   <form class="mt-6" @submit.prevent="$store.authModal.signIn.onSubmit()">
     <div>
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Email</label>
-      <input required="required" x-model="$store.authModal.signIn.email" type="email" placeholder="admin@appwrite.io" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+      <input required="required" x-model="$store.authModal.signIn.email" type="email" placeholder="admin@email.com" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
     </div>
     <div class="mt-4">
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Password</label>
@@ -429,7 +429,7 @@
   <form x-init="" class="mt-6" @submit.prevent="$store.authModal.magicUrl.onSubmit()">
     <div>
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Email</label>
-      <input x-model="$store.authModal.magicUrl.email" type="email" required="required" placeholder="admin@appwrite.io" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+      <input x-model="$store.authModal.magicUrl.email" type="email" required="required" placeholder="admin@email.com" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
     </div>
 
     <div class="mt-6 flex justify-center">
