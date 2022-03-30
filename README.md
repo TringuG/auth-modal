@@ -12,10 +12,7 @@
   <p align="center">
     TODO
     <br />
-    <a href="https://github.com/TringuG/auth-modal"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://auth.tringug.xyz/">View Demo</a>
+    <a href="https://auth-modal.vercel.app">View Demo</a>
     ·
     <a href="https://github.com/TringuG/auth-modal/issues">Report Bug</a>
     ·
@@ -57,10 +54,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-### Screens of project
-
 <details>
-<summary>Screens</summary>
+<summary>Showcase</summary>
 <ol>
 
 ![Open SIGIN menu][a1]
@@ -91,35 +86,29 @@
 
 
 ### Setup
-#### First you need is load Alpine.js and Tailwindcss
+First you need is load Alpine.js and Tailwindcss in <code>head</code> of code
 
-```bash
+```html
 <script src="https://unpkg.com/alpinejs" defer></script>
 ```
 
-```bash
+```html
 <script src="https://cdn.tailwindcss.com"></script>
 ```
 
-#### Than you must add Auth Modal Library
+and add Auth Modal Library in <code>head</code> of code
 
-```bash 
+```html
 <script src="https://cdn.jsdelivr.net/gh/tringug/auth-modal/src/auth-modal.js" defer></script> 
-```
-
-#### And you must add Adapter SDK (You can use what you won´t)
-
-For example we use <a href="https://appwrite.io/">Appwrite</a>
-
-```bash
-<script src="https://cdn.jsdelivr.net/npm/appwrite@7.0.0"></script>
 ```
 
 ### Config
 
-#### When you finish Setup you need configure auth modal
+When you finish Setup you need configure auth modal
 
-```bash
+Example config for appwrite:
+
+```html
    <script>
       window.authModal = {
         adapter: "appwrite",
@@ -130,25 +119,42 @@ For example we use <a href="https://appwrite.io/">Appwrite</a>
           oauthErrorUrl: window.location.origin + "/examples/appwrite.html",
           magicUrlRedirect: window.location.origin + "/examples/appwrite.html",
         },
-        oauths: ["discord", "google"],
+        oauths: ["discord", "google"], 
       };
     </script>
 ```
-### Example button for Auth Modal
 
-```bash
-  <div
-      x-data
-      class="to-auth-gray-900 absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black"
-    >
-      <button
-        x-on:click="$store.authModal.open()"
-        class="rounded-lg bg-white hover:bg-auth-gray-100 text-auth-gray-800 px-12 py-3 font-bold text-lg"
-      >
-        Open Auth Modal
-      </button>
-    </div>
-```
+### Adapter
+
+Than when you have choosen which adapter you want use you need install it and add in to project
+
+<details>
+<summary>Appwrite</summary>
+<ol>
+
+Installation Appwrite
+
+  
+</ol>
+</details>
+
+<details>
+<summary>Firebase</summary>
+<ol>
+
+Currently working on it
+  
+</ol>
+</details>
+
+<details>
+<summary>Supabase</summary>
+<ol>
+
+Currently working on it
+  
+</ol>
+</details>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -157,6 +163,13 @@ For example we use <a href="https://appwrite.io/">Appwrite</a>
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+```html
+  <div x-data>
+      <button x-on:click="$store.authModal.open()">
+          Open Auth Modal
+      </button>
+  </div>
+```
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -165,17 +178,19 @@ For example we use <a href="https://appwrite.io/">Appwrite</a>
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See <code>LICENSE</code> for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/TringuG/auth-modal/blob/main/LICENSE) for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
-<!-- CONTACT -->
-## Contact
+<!-- Contributors -->
+## Contributors
 
 Richard Nálepka - [TringuG](https://github.com/TringuG) - Discord: <code>TringuG#1484</code>
+
 Matej Bačo - [Meldiron](https://github.com/Meldiron) - Discord: <code>Meldiron#1111</code>
+
 
 Project Link: [https://github.com/TringuG/auth-modal](https://github.com/TringuG/auth-modal)
 
