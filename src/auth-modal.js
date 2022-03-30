@@ -5,6 +5,7 @@
 
       oauthSuccess: null,
       oauthError: null,
+      magicUrl: null,
 
       async setUp(config) {
         this.sdk = new Appwrite(config);
@@ -12,10 +13,40 @@
 
         this.oauthSuccess = config.oauthSuccessUrl;
         this.oauthError = config.oauthErrorUrl;
+        this.magicUrl = config.magicUrlRedirect;
       },
 
       getProviders() {
-        return ['amazon', 'apple', 'bitbucket', 'bitly', 'box', 'discord', 'dropbox', 'facebook', 'github', 'gitlab', 'google', 'linkedin', 'microsoft', 'notion', 'paypal', 'paypalSandbox', 'salesforce', 'slack', 'spotify', 'tradeshift', 'tradeshiftBox', 'twitch', 'vk', 'yahoo', 'yammer', 'yandex', 'wordpress', 'stripe'];
+        return [
+          "amazon",
+          "apple",
+          "bitbucket",
+          "bitly",
+          "box",
+          "discord",
+          "dropbox",
+          "facebook",
+          "github",
+          "gitlab",
+          "google",
+          "linkedin",
+          "microsoft",
+          "notion",
+          "paypal",
+          "paypalSandbox",
+          "salesforce",
+          "slack",
+          "spotify",
+          "tradeshift",
+          "tradeshiftBox",
+          "twitch",
+          "vk",
+          "yahoo",
+          "yammer",
+          "yandex",
+          "wordpress",
+          "stripe",
+        ];
       },
 
       async getProfile() {
@@ -31,11 +62,23 @@
       },
 
       async signInOauth(provider) {
-        return await this.sdk.account.createOAuth2Session(provider, this.oauthSuccess, this.oauthError);
+        return await this.sdk.account.createOAuth2Session(
+          provider,
+          this.oauthSuccess,
+          this.oauthError
+        );
       },
 
-      async signInMagicLink(email) {
-        return await this.sdk.account.createMagicURLSession("unique()", email);
+      async signInMagicUrl(email) {
+        return await this.sdk.account.createMagicURLSession(
+          "unique()",
+          email,
+          this.magicUrl
+        );
+      },
+
+      async signInMagicUrlFinish(userId, secret) {
+        return await this.sdk.account.updateMagicURLSession(userId, secret);
       },
 
       async signUp(name, email, password) {
@@ -242,7 +285,7 @@
         <img src="https://cdn.cdnlogo.com/logos/s/44/stripe.svg" class="w-4 h-4 mx-2 fill-current"></img>
         <span class="mx-2 sm:inline">Sign in with Stripe</span>
       </button>
-    `
+    `,
   };
 
   const signIn = `
@@ -296,7 +339,7 @@
   </div>
 
   <div class="flex items-center mb-4">
-    <button x-on:click="$store.authModal.goTo('magicLink')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium rounded-md ring-auth-gray-100 hover:bg-auth-gray-200 bg-auth-gray-100 text-auth-gray-900 focus:ring-4 hover:border-auth-gray-100 focus:bg-auth-gray-100 focus:border-auth-gray-100 focus:outline-none">
+    <button x-on:click="$store.authModal.goTo('magicUrl')" type="button" class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium rounded-md ring-auth-gray-100 hover:bg-auth-gray-200 bg-auth-gray-100 text-auth-gray-900 focus:ring-4 hover:border-auth-gray-100 focus:bg-auth-gray-100 focus:border-auth-gray-100 focus:outline-none">
       <svg class="w-4 h-4 font-extrabold mx-2 fill-current" viewBox="0 0 24 24">
         <path d="M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z"/>
       </svg>
@@ -381,34 +424,60 @@
 </div>
   `;
 
-  const magicLink = `
-<div>
-  <form class="mt-6">
+  const magicUrl = `
+<div x-init="$store.authModal.magicUrl.guard()">
+  <form x-init="" class="mt-6" @submit.prevent="$store.authModal.magicUrl.onSubmit()">
     <div>
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Email</label>
-      <input type="email" placeholder="admin@appwrite.io" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+      <input x-model="$store.authModal.magicUrl.email" type="email" required="required" placeholder="admin@appwrite.io" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
     </div>
 
     <div class="mt-6 flex justify-center">
-      <button type="button" x-on:click="$store.authModal.goTo('magicLinkFinish')" class="ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
-        Send Magic Link
+      <button type="submit" x-bind:disabled="$store.authModal.magicUrl.isLoading" class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
+        <p>Send Magic Link</p>
+        <template hidden x-if="$store.authModal.magicUrl.isLoading">
+          <svg
+            class="w-4 h-4 animate-spin"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        </template>
       </button>
     </div>
   </form>
 
+  <template hidden x-if="$store.authModal.magicUrl.errorMsg">
+    <p x-text="$store.authModal.magicUrl.errorMsg" class="font-light mt-6 text-center text-red-500"></p>
+  </template>
+
   <div class="mt-8 text-xs text-center text-gray-600 flex items-center justify-center space-x-1">
-    <p class="">Already have an account?</p>
+    <p class="">Do you have a password?</p>
     <button type="button" x-on:click="$store.authModal.goTo('signIn')" class="font-medium text-brand-600 underline hover:text-brand-900">
-      Sign In
+      Back to Sign In
     </button>
   </div>
 </div>
   `;
 
-  const magicLinkFinish = `
+  const magicUrlFinish = `
 <div>
   <p class="text-sm text-gray-500 mb-2">We emailed a magic link to </p>
-  <p class="text-lg font-bold text-black mb-2">admin@appwrite.io</p>
+  <p class="text-lg font-bold text-black mb-2" x-text="$store.authModal.magicUrl.email"></p>
   <p class="text-sm text-gray-500 mb-2">Click the link to log in or sign up.</p>
 </div>
   `;
@@ -649,8 +718,78 @@
     };
   };
 
+  const magicUrlStore = () => {
+    return {
+      email: "",
+
+      errorMsg: null,
+      isLoading: false,
+
+      async guard() {
+        this.email = "";
+
+        const store = Alpine.store("authModal");
+        const profile = await store.getProfile();
+
+        if (profile) {
+          store.goTo("profile");
+        }
+      },
+
+      async onFinish(userId, secret) {
+        try {
+          const store = Alpine.store("authModal");
+          const adapter = store.adapter;
+
+          if (!adapter) {
+            throw new Error("No adapter loaded.");
+          }
+
+          if (!adapter.signInMagicUrlFinish) {
+            throw new Error("Adapter does not support this method.");
+          }
+
+          await adapter.signInMagicUrlFinish(userId, secret);
+        } catch (err) {
+          console.error("Magic Link Issue.");
+          console.error(err);
+        }
+      },
+
+      async onSubmit() {
+        try {
+          if (this.isLoading) {
+            return;
+          }
+
+          this.isLoading = true;
+          this.errorMsg = null;
+
+          const store = Alpine.store("authModal");
+          const adapter = store.adapter;
+
+          if (!adapter) {
+            throw new Error("No adapter loaded.");
+          }
+
+          if (!adapter.signInMagicUrl) {
+            throw new Error("Adapter does not support this method.");
+          }
+
+          await adapter.signInMagicUrl(this.email);
+          store.goTo("magicUrlFinish");
+        } catch (err) {
+          this.errorMsg = err.message || err;
+        } finally {
+          this.isLoading = false;
+        }
+      },
+    };
+  };
+
   Alpine.store("authModal", {
     signIn: signInStore(),
+    magicUrl: magicUrlStore(),
     signUp: signUpStore(),
     profile: profileStore(),
 
@@ -676,14 +815,14 @@
         template: signUp,
       },
       {
-        id: "magicLink",
+        id: "magicUrl",
         title: "Sign In with Magic Link",
-        template: magicLink,
+        template: magicUrl,
       },
       {
-        id: "magicLinkFinish",
+        id: "magicUrlFinish",
         title: "Check your email inbox",
-        template: magicLinkFinish,
+        template: magicUrlFinish,
       },
       {
         id: "profile",
@@ -728,8 +867,12 @@
 
       this.allowedOauthProviders = [];
       const adapterProviders = this.adapter.getProviders();
-      const allowedProviders = Object.keys(providers).filter((provider) => adapterProviders.includes(provider)).filter((provider) => oauths.includes(provider));
-      this.allowedOauthProviders = allowedProviders.map((provider) => providers[provider]);
+      const allowedProviders = Object.keys(providers)
+        .filter((provider) => adapterProviders.includes(provider))
+        .filter((provider) => oauths.includes(provider));
+      this.allowedOauthProviders = allowedProviders.map(
+        (provider) => providers[provider]
+      );
     },
 
     open(page) {
@@ -784,4 +927,13 @@
   // Fetch profile on background when page loads
   const store = Alpine.store("authModal");
   store.getProfile(true);
+
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  if (params.userId && params.secret) {
+    const store = Alpine.store("authModal");
+    store.magicUrl.onFinish(params.userId, params.secret).then(() => {
+      store.getProfile(true);
+    });
+  }
 })();
