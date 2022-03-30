@@ -43,8 +43,11 @@
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- GETTING STARTED -->
 ## Getting Started
+
+### 📖 Examples
+
+Auth Modal is as [easy as 1-2-3](https://youtu.be/_8m7yhtPsqc?t=94)! Most developers can figure everything out just by looking at our examples 🤯 Please check them out in [examples folder](examples) to see Auth Modal in action.
 
 
 ### ⚙️ Installation
