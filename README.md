@@ -1,16 +1,17 @@
 <div id="top"></div>
 
-<!-- PROJECT LOGO -->
+<!-- PROJECT SUMMARY -->
 <br />
 <div align="center">
   <a href="hhttps://github.com/TringuG/auth-modal">
     <img src="images/logo.png" alt="Logo" width="445" height="180">
   </a>
 
-<h3 align="center">Auth Modal</h3>
+**<h3 align="center">Auth Modal</h3>**
 
   <p align="center">
-    TODO
+    All authorization needs solved in one modal window!
+    <br />
     <br />
     <a href="https://auth-modal.vercel.app">View Demo</a>
     ·
@@ -20,119 +21,103 @@
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#screens-of-project">Screens</a></li>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## ⚡ Quick Showcase
+
+![Showcase](images/showcase.png)
 
 <details>
-<summary>Showcase</summary>
+<summary>More Screenshots! 👀</summary>
 <ol>
 
-![Open SIGIN menu][a1]
-![SigIn][a2]
-![MagicLink][a3]
-![SignUp][a4]
-![MyAccount][a5]
+![Screenshot](images/A-1.png)
+![Screenshot](images/A-2.png)
+![Screenshot](images/A-3.png)
+![Screenshot](images/A-4.png)
+![Screenshot](images/A-5.png)
 
 </ol>
 </details>
 
-
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-### Built With
-
-* [Alpine.js](https://alpinejs.dev/)
-* [TailwindCSS](https://tailwindcss.com/)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
 
-### Setup
-First you need is load Alpine.js and Tailwindcss in <code>head</code> of code
+### ⚙️ Usage
+
+1. Install dependencies at the end of your `<head>` tag:
 
 ```html
+<!-- Auth Modal Dependencies -->
 <script src="https://unpkg.com/alpinejs" defer></script>
-```
-
-```html
 <script src="https://cdn.tailwindcss.com"></script>
 ```
 
-and add Auth Modal Library in <code>head</code> of code
+2. Add Auth Modal to your website:
 
 ```html
+<!-- Auth Modal -->
 <script src="https://cdn.jsdelivr.net/gh/tringug/auth-modal/src/auth-modal.js" defer></script> 
 ```
 
-### Config
+### 🛠️ Configuration
 
-When you finish Setup you need configure auth modal
-
-Example config for appwrite:
+Inside `<head>` tag, define Auth Modal configuration:
 
 ```html
-   <script>
-      window.authModal = {
-        adapter: "appwrite",
-        config: {
-          endpoint: "https://demo.appwrite.io/v1",
-          projectId: "authModal",
-          oauthSuccessUrl: window.location.origin + "/examples/appwrite.html",
-          oauthErrorUrl: window.location.origin + "/examples/appwrite.html",
-          magicUrlRedirect: window.location.origin + "/examples/appwrite.html",
-        },
-        oauths: ["discord", "google"], 
-      };
-    </script>
+<script>
+  window.authModal = {
+    adapter: "[ADAPTER_NAME]",
+    config: {
+      // Adapter-specific configuration
+    },
+
+    // If using Uauth
+    oauths: ["discord", "google"], 
+    oauthSuccessUrl: window.location.origin + "/dashboard",
+    oauthErrorUrl: window.location.origin + "/login",
+
+    // If using Magic URL
+    magicUrlRedirect: window.location.origin + "/dashboard",
+  };
+</script>
 ```
 
-### Adapter
+### Supported Adapters
 
-Than when you have choosen which adapter you want use you need install it and add in to project
+We currently support a few adapters, and are looking forward expanding the selection.
 
 <details>
 <summary>Appwrite</summary>
 <ol>
 
-Installation Appwrite
+1. Installation
+
+Include Appwrite SDK into your `<head>` tag:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/appwrite@7.0.0"></script>
+```
+
+2. Configuration
+
+Update Auth Modal config:
+
+```js
+window.authModal = {
+  adapter: "appwrite",
+  config: {
+    endpoint: "https://demo.appwrite.io/v1",
+    projectId: "authModal"
+  },
+
+  // Make sure to keep your existing configuration here
+};
+```
 
   
 </ol>
@@ -142,7 +127,7 @@ Installation Appwrite
 <summary>Firebase</summary>
 <ol>
 
-Currently working on it
+We are working hard on this adapter 🤖
   
 </ol>
 </details>
@@ -151,7 +136,7 @@ Currently working on it
 <summary>Supabase</summary>
 <ol>
 
-Currently working on it
+We are working hard on this adapter 🤖
   
 </ol>
 </details>
@@ -161,44 +146,38 @@ Currently working on it
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## 💻 Usage
+
+As simple as it gets!
 
 ```html
-  <div x-data>
-      <button x-on:click="$store.authModal.open()">
+  <div x-data> <!-- Enable Alpine.js with x-data -->
+      <button x-on:click="$store.authModal.open()"> <!-- Add button with action -->
           Open Auth Modal
       </button>
   </div>
 ```
 
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-<!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/TringuG/auth-modal/blob/main/LICENSE) for more information.
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+### Built With
 
-<!-- Contributors -->
+* [Alpine.js](https://alpinejs.dev/)
+* [TailwindCSS](https://tailwindcss.com/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Contributors
 
-Richard Nálepka - [TringuG](https://github.com/TringuG) - Discord: <code>TringuG#1484</code>
+- Richard Nálepka - [TringuG](https://github.com/TringuG) - Discord: `TringuG#1484``
 
-Matej Bačo - [Meldiron](https://github.com/Meldiron) - Discord: <code>Meldiron#1111</code>
-
-
-Project Link: [https://github.com/TringuG/auth-modal](https://github.com/TringuG/auth-modal)
-
+- Matej Bačo - [Meldiron](https://github.com/Meldiron) - Discord: `Meldiron#1111`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-[a1]: images/A-1.png
-[a2]: images/A-2.png
-[a3]: images/A-3.png
-[a4]: images/A-4.png
-[a5]: images/A-5.png
