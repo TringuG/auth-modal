@@ -90,13 +90,65 @@
 ## Getting Started
 
 
-### Prerequisites
+### Setup
+#### First you need is load Alpine.js and Tailwindcss
 
+```bash
+<script src="https://unpkg.com/alpinejs" defer></script>
+```
 
+```bash
+<script src="https://cdn.tailwindcss.com"></script>
+```
 
-### Installation
+#### Than you must add Auth Modal Library
 
+```bash 
+<script src="https://cdn.jsdelivr.net/gh/tringug/auth-modal/src/auth-modal.js" defer></script> 
+```
 
+#### And you must add Adapter SDK (You can use what you won´t)
+
+For example we use <a href="https://appwrite.io/">Appwrite</a>
+
+```bash
+<script src="https://cdn.jsdelivr.net/npm/appwrite@7.0.0"></script>
+```
+
+### Config
+
+#### When you finish Setup you need configure auth modal
+
+```bash
+   <script>
+      window.authModal = {
+        adapter: "appwrite",
+        config: {
+          endpoint: "https://demo.appwrite.io/v1",
+          projectId: "authModal",
+          oauthSuccessUrl: window.location.origin + "/examples/appwrite.html",
+          oauthErrorUrl: window.location.origin + "/examples/appwrite.html",
+          magicUrlRedirect: window.location.origin + "/examples/appwrite.html",
+        },
+        oauths: ["discord", "google"],
+      };
+    </script>
+```
+### Example button for Auth Modal
+
+```bash
+  <div
+      x-data
+      class="to-auth-gray-900 absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black"
+    >
+      <button
+        x-on:click="$store.authModal.open()"
+        class="rounded-lg bg-white hover:bg-auth-gray-100 text-auth-gray-800 px-12 py-3 font-bold text-lg"
+      >
+        Open Auth Modal
+      </button>
+    </div>
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -108,16 +160,6 @@
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- LICENSE -->
