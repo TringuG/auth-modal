@@ -47,7 +47,7 @@
 ## Getting Started
 
 
-### ⚙️ Usage
+### ⚙️ Installation
 
 1. Install dependencies at the end of your `<head>` tag:
 
@@ -87,7 +87,7 @@ Inside `<head>` tag, define Auth Modal configuration:
 </script>
 ```
 
-### Supported Adapters
+### 🔌 Supported Adapters
 
 We currently support a few adapters, and are looking forward expanding the selection.
 
@@ -95,7 +95,7 @@ We currently support a few adapters, and are looking forward expanding the selec
 <summary>Appwrite</summary>
 <ol>
 
-1. Installation
+#### 1. Installation
 
 Include Appwrite SDK into your `<head>` tag:
 
@@ -103,7 +103,7 @@ Include Appwrite SDK into your `<head>` tag:
 <script src="https://cdn.jsdelivr.net/npm/appwrite@7.0.0"></script>
 ```
 
-2. Configuration
+#### 2. Configuration
 
 Update Auth Modal config:
 
@@ -176,7 +176,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 ## Contributors
 
-- Richard Nálepka - [TringuG](https://github.com/TringuG) - Discord: `TringuG#1484``
+- Richard Nálepka - [TringuG](https://github.com/TringuG) - Discord: `TringuG#1484`
 
 - Matej Bačo - [Meldiron](https://github.com/Meldiron) - Discord: `Meldiron#1111`
 
