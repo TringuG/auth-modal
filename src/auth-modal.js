@@ -296,14 +296,26 @@
       <input required="required" x-model="$store.authModal.signIn.email" type="email" placeholder="admin@email.com" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
     </div>
     <div class="mt-4">
-      <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Password</label>
-      <input required="required" x-model="$store.authModal.signIn.password" type="password" placeholder="Password" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+      <div class="flex mb-2 items-center text-center justify-between">
+        <label class="text-auth-gray-900 block text-sm font-medium"
+          >Password</label
+        >
+        <button
+          type="button"
+          x-on:click="$store.authModal.goTo('forgotPassword')"
+          class="font-medium text-sm text-auth-gray-900 hover:underline "
+        >
+          Forgot?
+        </button>
+      </div>
+      <input
+        required="required"
+        x-model="$store.authModal.signIn.password"
+        type="password"
+        placeholder="Password"
+        class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full"
+      />
     </div>
-    <div class="text-xs text-gray-600">
-    <button type="button" x-on:click="$store.authModal.goTo('forgotPassword')" class="font-medium text-auth-gray-900 hover:underline mt-1">
-        Forgot password? 
-    </button>
-  </div>
     <div class="mt-6 flex justify-center">
       <button type="submit" x-bind:disabled="$store.authModal.signIn.isLoading" class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
         <p>Sign In</p>
@@ -543,7 +555,7 @@ const forgotPassword = `
     </div>
 
     <div class="mt-6 flex justify-center">
-      <button type="submit" x-bind:disabled="$store.authModal.magicUrl.isLoading" class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
+      <button type="button" x-bind:disabled="$store.authModal.magicUrl.isLoading" x-on:click="$store.authModal.goTo('newPassword')" class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
         <p>Reset password</p>
         <template hidden x-if="$store.authModal.magicUrl.isLoading">
           <svg
@@ -576,30 +588,39 @@ const forgotPassword = `
   </template>
 
   <div class="mt-8 text-xs text-center text-gray-600 flex items-center justify-center space-x-1">
+    <p>Did you just remember?</p>
     <button type="button" x-on:click="$store.authModal.goTo('signIn')" class="font-medium text-brand-600 underline hover:text-brand-900">
-      Back
+      Back to Sign In
     </button>
   </div>
 </div>
   `;
 
+  const resetPasswordFinish = `
+<div>
+  <p class="text-sm text-gray-500 mb-2">We emailed a reset password link to </p>
+  <p class="text-lg font-bold text-black mb-2" x-text="$store.authModal.magicUrl.email"></p>
+  <p class="text-sm text-gray-500 mb-2">Click the link to set new password.</p>
+</div>
+  `;
+
   const newPassword = `
-<div x-init="$store.authModal.magicUrl.guard()">
-  <form x-init="" class="mt-6" @submit.prevent="$store.authModal.magicUrl.onSubmit()">
+  <div x-init="$store.authModal.signUp.guard()">
+  <form class="mt-6" @submit.prevent="$store.authModal.signUp.onSubmit()">
     <div>
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Enter new Password</label>
-      <input x-model="$store.authModal.magicUrl.email" type="password" required="required" placeholder="Password" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+      <input x-model="$store.authModal.signUp.name" required="required" type="password" placeholder="Password" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
     </div>
 
-    <div>
+    <div class="mt-4">
       <label class="text-auth-gray-900 mb-2 block text-sm font-medium">Confirm new Password</label>
-      <input x-model="$store.authModal.magicUrl.email" type="password" required="required" placeholder="Password" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
+      <input x-model="$store.authModal.signUp.email" required="required" type="password" placeholder="Password" class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full">
     </div>
 
     <div class="mt-6 flex justify-center">
-      <button type="submit" x-bind:disabled="$store.authModal.magicUrl.isLoading" class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
-        <p>Reset password</p>
-        <template hidden x-if="$store.authModal.magicUrl.isLoading">
+      <button type="submit" x-bind:disabled="$store.authModal.signUp.isLoading" class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4">
+        <p>Set New Password</p>
+        <template hidden x-if="$store.authModal.signUp.isLoading">
           <svg
             class="w-4 h-4 animate-spin"
             xmlns="http://www.w3.org/2000/svg"
@@ -623,11 +644,11 @@ const forgotPassword = `
         </template>
       </button>
     </div>
-  </form>
 
-  <template hidden x-if="$store.authModal.magicUrl.errorMsg">
-    <p x-text="$store.authModal.magicUrl.errorMsg" class="font-light mt-6 text-center text-red-500"></p>
-  </template>
+    <template hidden x-if="$store.authModal.signUp.errorMsg">
+      <p x-text="$store.authModal.signUp.errorMsg" class="font-light mt-6 text-center text-red-500"></p>
+    </template>
+  </form>
 </div>
   `;
 
@@ -930,6 +951,21 @@ const forgotPassword = `
         id: "profile",
         title: "My Account",
         template: profile,
+      },
+      {
+        id: "forgotPassword",
+        title: "Forgot Password",
+        template: forgotPassword,
+      },
+      {
+        id: "newPassword",
+        title: "New Password",
+        template: newPassword,
+      },
+      {
+        id: "resetPasswordFinish",
+        title: "Check your email inbox",
+        template: resetPasswordFinish,
       },
     ],
 
