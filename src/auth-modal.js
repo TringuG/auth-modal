@@ -1,3 +1,6 @@
+// TODO: Fix Vercel build
+// TODO: Fix jsDeliver build
+
 (async () => {
   // Setup fonts and colors
   document.body.insertAdjacentHTML(

@@ -1,4 +1,4 @@
-const { src, dest, series } = require("gulp");
+const { src, dest, series, watch } = require("gulp");
 const concat = require("gulp-concat");
 const htmlToJs = require("gulp-html-to-variable");
 const del = require("del");
@@ -38,4 +38,10 @@ function cleanup() {
   return task;
 }
 
-exports.default = series(buildHtml, buildJs, mergeBuilds, cleanup);
+const tasks = series(buildHtml, buildJs, mergeBuilds, cleanup);
+
+exports.default = tasks;
+
+exports.watch = function() {
+  watch('src/**/*.*', );
+};
