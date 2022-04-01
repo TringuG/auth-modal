@@ -1,5 +1,5 @@
-var store = {
+var globalStore = {
     pagesConfig: []
 };
-var adapters = {};
-var providers = {};
+var globalAdapters = {};
+var globalProviders = {};

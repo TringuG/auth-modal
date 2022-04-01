@@ -1,6 +1,6 @@
 var pageId = "forgotPassword";
 
-store.pagesConfig.push({
+globalStore.pagesConfig.push({
   id: pageId,
   title: "Forgot Password",
   template: html["modals/" + pageId + "/" + pageId + ".html"],

@@ -31,7 +31,9 @@
     },
   };
 
-  var store = Object.assign({}, store, {
+  var alpineStore = Object.assign({}, globalStore, {
+    // Defined by other files
+
     allowedOauthProviders: [],
     adapter: null,
     opened: false,
@@ -62,16 +64,16 @@
       const { config, adapter } = window.authModal;
       const oauths = window.authModal.oauths || [];
 
-      this.adapter = providers[adapter];
+      this.adapter = globalAdapters[adapter];
       await this.adapter.setUp(config);
 
       this.allowedOauthProviders = [];
       const adapterProviders = this.adapter.getProviders();
-      const allowedProviders = Object.keys(providers)
+      const allowedProviders = Object.keys(globalProviders)
         .filter((provider) => adapterProviders.includes(provider))
         .filter((provider) => oauths.includes(provider));
       this.allowedOauthProviders = allowedProviders.map(
-        (provider) => providers[provider]
+        (provider) => globalProviders[provider]
       );
     },
 
@@ -94,10 +96,10 @@
     goTo(page) {
       this.currentPage = this.pagesConfig.find((p) => p.id === page);
     },
-  })
+  });
 
   // Define Alpine.js stores
-  Alpine.store("authModal", store);
+  Alpine.store("authModal", alpineStore);
 
   // Insert Auth Modal
   var authModal = `
@@ -129,16 +131,16 @@
 
   // To ensure we show profile if already logged in, without waiting
   // Fetch profile on background when page loads
-  var store = Alpine.store("authModal");
-  store.getProfile(true);
+  var storeSnapshot = Alpine.store("authModal");
+  storeSnapshot.getProfile(true);
 
   // Magic URL functionality
   var urlSearchParams = new URLSearchParams(window.location.search);
   var params = Object.fromEntries(urlSearchParams.entries());
   if (params.userId && params.secret) {
-    var store = Alpine.store("authModal");
-    store.magicUrl.onFinish(params.userId, params.secret).then(() => {
-      store.getProfile(true);
+    var storeSnapshot = Alpine.store("authModal");
+    storeSnapshot.magicUrl.onFinish(params.userId, params.secret).then(() => {
+      storeSnapshot.getProfile(true);
     });
   }
 })();
