@@ -11,8 +11,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Add Auth Modal Library -->
-    <!-- <script src="https://cdn.jsdelivr.net/gh/tringug/auth-modal/src/auth-modal.js" defer></script> -->
-    <script src="../src/auth-modal.js" defer></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/tringug/auth-modal/dist/auth-modal.js" defer></script> -->
+    <script src="../dist/auth-modal.js" defer></script>
 
     <!-- Add Adapter SDK -->
     <script src="https://cdn.jsdelivr.net/npm/appwrite@7.0.0"></script>
@@ -24,10 +24,12 @@
         config: {
           endpoint: "https://demo.appwrite.io/v1",
           projectId: "authModal",
-          oauthSuccessUrl: window.location.origin + "/examples/appwrite.html",
-          oauthErrorUrl: window.location.origin + "/examples/appwrite.html",
-          magicUrlRedirect: window.location.origin + "/examples/appwrite.html",
         },
+
+        magicUrlRedirect: window.location.origin + "/examples/appwrite.html",
+
+        oauthSuccessUrl: window.location.origin + "/examples/appwrite.html",
+        oauthErrorUrl: window.location.origin + "/examples/appwrite.html",
         oauths: ["discord", "google"],
       };
     </script>
