@@ -43,5 +43,5 @@ const tasks = series(buildHtml, buildJs, mergeBuilds, cleanup);
 exports.default = tasks;
 
 exports.watch = function() {
-  watch('src/**/*.*', );
+  watch('src/**/*.*', tasks);
 };
