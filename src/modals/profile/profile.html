@@ -1,0 +1,58 @@
+<div x-data x-init="$store.authModal.profile.guard()">
+  <template x-if="$store.authModal.profile.profile">
+    <div>
+      <p class="text-sm text-gray-500 mb-2">Logged in as</p>
+      <p>
+        <span
+          x-text="$store.authModal.profile.profile.name"
+          class="text-lg text-black"
+        ></span>
+        <span class="text-auth-gray-400">at</span>
+        <span
+          x-text="$store.authModal.profile.profile.email"
+          class="text-lg text-black"
+        ></span>
+      </p>
+
+      <div class="mt-6 flex justify-center">
+        <button
+          x-on:click="$store.authModal.profile.logOut()"
+          x-bind:disabled="$store.authModal.profile.isLoading"
+          type="button"
+          class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4"
+        >
+          <p>Log Out</p>
+          <template hidden x-if="$store.authModal.profile.isLoading">
+            <svg
+              class="w-4 h-4 animate-spin"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+          </template>
+        </button>
+      </div>
+
+      <template hidden x-if="$store.authModal.profile.errorMsg">
+        <p
+          x-text="$store.authModal.profile.errorMsg"
+          class="font-light mt-6 text-center text-red-500"
+        ></p>
+      </template>
+    </div>
+  </template>
+</div>

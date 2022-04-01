@@ -1,0 +1,117 @@
+<div x-init="$store.authModal.signIn.guard()">
+  <form class="mt-6" @submit.prevent="$store.authModal.signIn.onSubmit()">
+    <div>
+      <label class="text-auth-gray-900 mb-2 block text-sm font-medium"
+        >Email</label
+      >
+      <input
+        required="required"
+        x-model="$store.authModal.signIn.email"
+        type="email"
+        placeholder="admin@email.com"
+        class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full"
+      />
+    </div>
+    <div class="mt-4">
+      <div class="flex mb-2 items-center text-center justify-between">
+        <label class="text-auth-gray-900 block text-sm font-medium"
+          >Password</label
+        >
+        <button
+          type="button"
+          x-on:click="$store.authModal.goTo('forgotPassword')"
+          class="font-medium text-sm text-auth-gray-900 hover:underline"
+        >
+          Forgot?
+        </button>
+      </div>
+      <input
+        required="required"
+        x-model="$store.authModal.signIn.password"
+        type="password"
+        placeholder="Password"
+        class="bg-auth-gray-100 ring-auth-gray-800 block rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-1 p-4 w-full"
+      />
+    </div>
+    <div class="mt-6 flex justify-center">
+      <button
+        type="submit"
+        x-bind:disabled="$store.authModal.signIn.isLoading"
+        class="disabled:opacity-75 disabled:hover:bg-auth-gray-900 flex items-center justify-center space-x-2 ring-auth-gray-200 bg-auth-gray-900 rounded-lg px-12 py-3 w-full font-bold text-white hover:bg-black focus:ring-4"
+      >
+        <p>Sign In</p>
+        <template hidden x-if="$store.authModal.signIn.isLoading">
+          <svg
+            class="w-4 h-4 animate-spin"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            ></path>
+          </svg>
+        </template>
+      </button>
+    </div>
+  </form>
+
+  <template hidden x-if="$store.authModal.signIn.errorMsg">
+    <p
+      x-text="$store.authModal.signIn.errorMsg"
+      class="font-light mt-6 text-center text-red-500"
+    ></p>
+  </template>
+
+  <div class="flex items-center justify-between mt-6 mb-6">
+    <span class="w-2/5 border-b"></span>
+    <p class="text-sm text-center text-black uppercase">or</p>
+    <span class="w-2/5 border-b"></span>
+  </div>
+
+  <div class="flex items-center mb-4">
+    <button
+      x-on:click="$store.authModal.goTo('magicUrl')"
+      type="button"
+      class="flex items-center justify-center w-full px-6 py-3 text-sm font-medium rounded-md ring-auth-gray-100 hover:bg-auth-gray-200 bg-auth-gray-100 text-auth-gray-900 focus:ring-4 hover:border-auth-gray-100 focus:bg-auth-gray-100 focus:border-auth-gray-100 focus:outline-none"
+    >
+      <svg class="w-4 h-4 font-extrabold mx-2 fill-current" viewBox="0 0 24 24">
+        <path
+          d="M6.188 8.719c.439-.439.926-.801 1.444-1.087 2.887-1.591 6.589-.745 8.445 2.069l-2.246 2.245c-.644-1.469-2.243-2.305-3.834-1.949-.599.134-1.168.433-1.633.898l-4.304 4.306c-1.307 1.307-1.307 3.433 0 4.74 1.307 1.307 3.433 1.307 4.74 0l1.327-1.327c1.207.479 2.501.67 3.779.575l-2.929 2.929c-2.511 2.511-6.582 2.511-9.093 0s-2.511-6.582 0-9.093l4.304-4.306zm6.836-6.836l-2.929 2.929c1.277-.096 2.572.096 3.779.574l1.326-1.326c1.307-1.307 3.433-1.307 4.74 0 1.307 1.307 1.307 3.433 0 4.74l-4.305 4.305c-1.311 1.311-3.44 1.3-4.74 0-.303-.303-.564-.68-.727-1.051l-2.246 2.245c.236.358.481.667.796.982.812.812 1.846 1.417 3.036 1.704 1.542.371 3.194.166 4.613-.617.518-.286 1.005-.648 1.444-1.087l4.304-4.305c2.512-2.511 2.512-6.582.001-9.093-2.511-2.51-6.581-2.51-9.092 0z"
+        />
+      </svg>
+      <span class="mx-2 sm:inline">Sign in with Magic Link</span>
+    </button>
+  </div>
+
+  <template x-if="$store.authModal.allowedOauthProviders.length > 0">
+    <div class="grid grid-cols-12 gap-4">
+      <template x-for="provider in $store.authModal.allowedOauthProviders">
+        <div x-html="provider" class="col-span-6"></div>
+      </template>
+    </div>
+  </template>
+
+  <div
+    class="mt-8 text-xs text-center text-gray-600 flex items-center justify-center space-x-1"
+  >
+    <p>Don't have an account?</p>
+    <button
+      type="button"
+      x-on:click="$store.authModal.goTo('signUp')"
+      class="font-medium text-brand-600 underline hover:text-brand-900"
+    >
+      Create One
+    </button>
+  </div>
+</div>
