@@ -1,5 +1,5 @@
-// TODO: Fix Vercel build
 // TODO: Fix jsDeliver build
+// TODO: Finish forgotPassword
 
 (async () => {
   // Setup fonts and colors
