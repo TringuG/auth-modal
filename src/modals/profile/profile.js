@@ -1,8 +1,12 @@
 var pageId = "profile";
-var pageHtml = html["modals/" + pageId + "/" + pageId + ".html"];
 
-var profile = pageHtml;
-var profileStore = () => {
+store.pagesConfig.push({
+  id: pageId,
+  title: "My Account",
+  template: html["modals/" + pageId + "/" + pageId + ".html"],
+});
+
+store[pageId] = () => {
   return {
     profile: null,
 

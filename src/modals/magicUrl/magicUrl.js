@@ -1,8 +1,12 @@
 var pageId = "magicUrl";
-var pageHtml = html["modals/" + pageId + "/" + pageId + ".html"];
 
-var magicUrl = pageHtml;
-var magicUrlStore = () => {
+store.pagesConfig.push({
+  id: pageId,
+  title: "Sign In with Magic Link",
+  template: html["modals/" + pageId + "/" + pageId + ".html"],
+});
+
+store[pageId] = () => {
   return {
     email: "",
 

@@ -1,5 +1,9 @@
-var pageId = 'forgotPasswordNew';
-var pageHtml = html['modals/' + pageId + '/' + pageId + '.html'];
+var pageId = "forgotPasswordNew";
 
-var forgotPasswordNew = pageHtml;
-// TODO: Missing store
+store.pagesConfig.push({
+  id: pageId,
+  title: "New Password",
+  template: html["modals/" + pageId + "/" + pageId + ".html"],
+});
+
+// TODO: Implement store

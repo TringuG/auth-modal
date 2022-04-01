@@ -13,6 +13,7 @@ function buildHtml() {
 
 function buildJs() {
   const task = src([
+    "src/preload.js",
     "src/adapters/*.js",
     "src/modals/*/*.js",
     "src/utils/*.js",

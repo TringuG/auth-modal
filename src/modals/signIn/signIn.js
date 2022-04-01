@@ -1,8 +1,12 @@
-var pageId = 'signIn';
-var pageHtml = html['modals/' + pageId + '/' + pageId + '.html'];
+var pageId = "signIn";
 
-var signIn = pageHtml;
-var signInStore = () => {
+store.pagesConfig.push({
+  id: pageId,
+  title: "Sign In",
+  template: html["modals/" + pageId + "/" + pageId + ".html"],
+});
+
+store[pageId] = () => {
   return {
     email: "",
     password: "",

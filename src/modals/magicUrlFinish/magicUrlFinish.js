@@ -1,5 +1,9 @@
-var pageId = 'magicUrlFinish';
-var pageHtml = html['modals/' + pageId + '/' + pageId + '.html'];
+var pageId = "magicUrlFinish";
 
-var magicUrlFinish = pageHtml;
+store.pagesConfig.push({
+  id: pageId,
+  title: "Check your email inbox",
+  template: html["modals/" + pageId + "/" + pageId + ".html"],
+});
+
 // Uses magicUrl store

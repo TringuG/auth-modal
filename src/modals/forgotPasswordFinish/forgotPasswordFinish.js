@@ -1,5 +1,9 @@
-var pageId = 'forgotPasswordFinish';
-var pageHtml = html['modals/' + pageId + '/' + pageId + '.html'];
+var pageId = "forgotPasswordFinish";
 
-var forgotPasswordFinish = pageHtml;
-// TODO: Missing store
+store.pagesConfig.push({
+  id: pageId,
+  title: "Check your email inbox",
+  template: html["modals/" + pageId + "/" + pageId + ".html"],
+});
+
+// TODO: Implement store

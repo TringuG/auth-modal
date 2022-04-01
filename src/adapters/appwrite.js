@@ -1,5 +1,4 @@
-// Adapter definition
-const AppwriteAdapter = () => {
+providers['appwrite'] = () => {
   return {
     sdk: null,
 

@@ -31,64 +31,12 @@
     },
   };
 
-  // Define Alpine.js stores
-  Alpine.store("authModal", {
-    signIn: signInStore(),
-    magicUrl: magicUrlStore(),
-    signUp: signUpStore(),
-    profile: profileStore(),
-
+  var store = Object.assign({}, store, {
     allowedOauthProviders: [],
-
-    accountProfile: null,
-
     adapter: null,
-
     opened: false,
     currentPage: null,
-
-    pagesConfig: [
-      {
-        id: "signIn",
-        title: "Sign In",
-        template: signIn,
-      },
-      {
-        id: "signUp",
-        title: "Sign Up",
-        template: signUp,
-      },
-      {
-        id: "magicUrl",
-        title: "Sign In with Magic Link",
-        template: magicUrl,
-      },
-      {
-        id: "magicUrlFinish",
-        title: "Check your email inbox",
-        template: magicUrlFinish,
-      },
-      {
-        id: "profile",
-        title: "My Account",
-        template: profile,
-      },
-      {
-        id: "forgotPassword",
-        title: "Forgot Password",
-        template: forgotPassword,
-      },
-      {
-        id: "forgotPasswordFinish",
-        title: "Check your email inbox",
-        template: forgotPasswordFinish,
-      },
-      {
-        id: "forgotPasswordNew",
-        title: "New Password",
-        template: forgotPasswordNew,
-      },
-    ],
+    accountProfile: null,
 
     async getProfile(force = false) {
       if (this.accountProfile && !force) {
@@ -114,14 +62,7 @@
       const { config, adapter } = window.authModal;
       const oauths = window.authModal.oauths || [];
 
-      switch (adapter) {
-        case "appwrite":
-          this.adapter = AppwriteAdapter();
-          break;
-        default:
-          throw new Errror("Adapter not supported by Auth Modal.");
-      }
-
+      this.adapter = providers[adapter];
       await this.adapter.setUp(config);
 
       this.allowedOauthProviders = [];
@@ -153,7 +94,10 @@
     goTo(page) {
       this.currentPage = this.pagesConfig.find((p) => p.id === page);
     },
-  });
+  })
+
+  // Define Alpine.js stores
+  Alpine.store("authModal", store);
 
   // Insert Auth Modal
   var authModal = `
