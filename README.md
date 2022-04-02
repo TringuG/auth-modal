@@ -24,6 +24,7 @@
 <!-- TABLE OF CONTENTS -->
 
 <!-- ABOUT THE PROJECT -->
+
 ## ⚡ Quick Showcase
 
 ![Showcase](images/showcase.png)
@@ -49,7 +50,6 @@
 
 Auth Modal is as [easy as 1-2-3](https://youtu.be/_8m7yhtPsqc?t=94)! Most developers can figure everything out just by looking at our examples 🤯 Please check them out in [examples folder](examples) to see Auth Modal in action.
 
-
 ### ⚙️ Installation
 
 1. Install dependencies at the end of your `<head>` tag:
@@ -64,7 +64,10 @@ Auth Modal is as [easy as 1-2-3](https://youtu.be/_8m7yhtPsqc?t=94)! Most develo
 
 ```html
 <!-- Auth Modal -->
-<script src="https://cdn.jsdelivr.net/gh/tringug/auth-modal/src/auth-modal.js" defer></script> 
+<script
+  src="https://cdn.jsdelivr.net/gh/tringug/auth-modal/src/auth-modal.js"
+  defer
+></script>
 ```
 
 ### 🛠️ Configuration
@@ -80,12 +83,15 @@ Inside `<head>` tag, define Auth Modal configuration:
     },
 
     // If using Uauth
-    oauths: ["discord", "google"], 
+    oauths: ["discord", "google"],
     oauthSuccessUrl: window.location.origin + "/dashboard",
     oauthErrorUrl: window.location.origin + "/login",
 
     // If using Magic URL
     magicUrlRedirect: window.location.origin + "/dashboard",
+
+    // If supporting password recovery
+    passwordRecoveryRedirect: window.location.origin + "/login",
   };
 </script>
 ```
@@ -115,14 +121,13 @@ window.authModal = {
   adapter: "appwrite",
   config: {
     endpoint: "https://demo.appwrite.io/v1",
-    projectId: "authModal"
+    projectId: "authModal",
   },
 
   // Make sure to keep your existing configuration here
 };
 ```
 
-  
 </ol>
 </details>
 
@@ -131,7 +136,7 @@ window.authModal = {
 <ol>
 
 We are working hard on this adapter 🤖
-  
+
 </ol>
 </details>
 
@@ -140,25 +145,26 @@ We are working hard on this adapter 🤖
 <ol>
 
 We are working hard on this adapter 🤖
-  
+
 </ol>
 </details>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
 <!-- USAGE EXAMPLES -->
+
 ## 💻 Usage
 
 As simple as it gets!
 
 ```html
-  <div x-data> <!-- Enable Alpine.js with x-data -->
-      <button x-on:click="$store.authModal.open()"> <!-- Add button with action -->
-          Open Auth Modal
-      </button>
-  </div>
+<div x-data>
+  <!-- Enable Alpine.js with x-data -->
+  <button x-on:click="$store.authModal.open()">
+    <!-- Add button with action -->
+    Open Auth Modal
+  </button>
+</div>
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -169,11 +175,10 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
 ### Built With
 
-* [Alpine.js](https://alpinejs.dev/)
-* [TailwindCSS](https://tailwindcss.com/)
+- [Alpine.js](https://alpinejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

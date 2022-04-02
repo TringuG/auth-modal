@@ -23,27 +23,6 @@ globalStore[pageId] = {
     }
   },
 
-  async onFinish(userId, secret) {
-    try {
-      const store = Alpine.store("authModal");
-      const adapter = store.adapter;
-
-      if (!adapter) {
-        throw new Error("No adapter loaded.");
-      }
-
-      if (!adapter.signInMagicUrlFinish) {
-        throw new Error("Adapter does not support this method.");
-      }
-
-      await adapter.signInMagicUrlFinish(userId, secret);
-    } catch (err) {
-      // TODO: Nice error modal, maybe?
-      console.error("Magic Link Issue.");
-      console.error(err);
-    }
-  },
-
   async onSubmit() {
     try {
       if (this.isLoading) {

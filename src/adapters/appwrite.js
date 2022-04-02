@@ -4,6 +4,7 @@ globalAdapters["appwrite"] = {
   oauthSuccess: null,
   oauthError: null,
   magicUrl: null,
+  passwordRecoveryUrl: null,
 
   async setUp(config) {
     this.sdk = new Appwrite();
@@ -12,6 +13,7 @@ globalAdapters["appwrite"] = {
     this.oauthSuccess = window.authModal.oauthSuccessUrl;
     this.oauthError = window.authModal.oauthErrorUrl;
     this.magicUrl = window.authModal.magicUrlRedirect;
+    this.passwordRecoveryUrl = window.authModal.passwordRecoveryRedirect;
   },
 
   getProviders() {
@@ -81,5 +83,21 @@ globalAdapters["appwrite"] = {
 
   async signUp(name, email, password) {
     return await this.sdk.account.create("unique()", email, password, name);
+  },
+
+  async resetPassword(email) {
+    return await this.sdk.account.createRecovery(
+      email,
+      this.passwordRecoveryUrl
+    );
+  },
+
+  async resetPasswordFinish(secret, password, passwordAgain) {
+    return await this.sdk.account.updateRecovery(
+      "unique()",
+      secret,
+      password,
+      passwordAgain
+    );
   },
 };

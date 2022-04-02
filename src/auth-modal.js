@@ -134,13 +134,23 @@
   var storeSnapshot = Alpine.store("authModal");
   storeSnapshot.getProfile(true);
 
-  // Magic URL functionality
   var urlSearchParams = new URLSearchParams(window.location.search);
   var params = Object.fromEntries(urlSearchParams.entries());
-  if (params.userId && params.secret) {
-    var storeSnapshot = Alpine.store("authModal");
-    storeSnapshot.magicUrl.onFinish(params.userId, params.secret).then(() => {
-      storeSnapshot.getProfile(true);
-    });
+
+  if (params.userId && params.secret && params.expire) {
+    if (params.projectId) {
+      // Magic URL functionality
+      var storeSnapshot = Alpine.store("authModal");
+      storeSnapshot.magicUrlFinish
+        .onFinish(params.userId, params.secret)
+        .then(() => {
+          storeSnapshot.getProfile(true);
+        });
+    } else {
+      // Password recovery functionality
+      var storeSnapshot = Alpine.store("authModal");
+      storeSnapshot.forgotPasswordNew.secret = params.secret;
+      storeSnapshot.open("forgotPasswordNew");
+    }
   }
 })();
