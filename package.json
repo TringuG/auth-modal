@@ -2,6 +2,7 @@
   "name": "auth-modal",
   "version": "0.0.1",
   "main": "dist/auth-modal.js",
+  "jsdelivr": "dist/auth-modal.js",
   "directories": {
     "example": "examples"
   },
