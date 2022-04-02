@@ -92,9 +92,9 @@ globalAdapters["appwrite"] = {
     );
   },
 
-  async resetPasswordFinish(secret, password, passwordAgain) {
+  async resetPasswordFinish(userId, secret, password, passwordAgain) {
     return await this.sdk.account.updateRecovery(
-      "unique()",
+      userId,
       secret,
       password,
       passwordAgain

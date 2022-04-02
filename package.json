@@ -1,14 +1,14 @@
 {
   "name": "auth-modal",
   "version": "0.0.1",
-  "main": "src/auth-modal.js",
+  "main": "dist/auth-modal.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "vercel:build": "npm run build && sh vercel.build.sh",
-    "build": "gulp",
+    "dist": "gulp",
     "watch": "gulp && gulp watch"
   },
   "repository": {

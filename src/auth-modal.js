@@ -1,6 +1,3 @@
-// TODO: Fix jsDeliver build
-// TODO: Finish forgotPassword
-
 (async () => {
   // Setup fonts and colors
   document.body.insertAdjacentHTML(
@@ -150,6 +147,7 @@
       // Password recovery functionality
       var storeSnapshot = Alpine.store("authModal");
       storeSnapshot.forgotPasswordNew.secret = params.secret;
+      storeSnapshot.forgotPasswordNew.userId = params.userId;
       storeSnapshot.open("forgotPasswordNew");
     }
   }

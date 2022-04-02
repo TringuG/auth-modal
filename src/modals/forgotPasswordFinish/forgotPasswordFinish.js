@@ -6,4 +6,4 @@ globalStore.pagesConfig.push({
   template: html["modals/" + pageId + "/" + pageId + ".html"],
 });
 
-// TODO: Implement store
+// Uses 'forgotPassword' store

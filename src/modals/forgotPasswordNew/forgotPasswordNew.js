@@ -8,6 +8,7 @@ globalStore.pagesConfig.push({
 
 globalStore[pageId] = {
   secret: "", // Set before opening modal
+  userId: "", // Set before opening modal
 
   password: "",
   passwordAgain: "",
@@ -48,6 +49,7 @@ globalStore[pageId] = {
       }
 
       await adapter.resetPasswordFinish(
+        this.userId,
         this.secret,
         this.password,
         this.passwordAgain
