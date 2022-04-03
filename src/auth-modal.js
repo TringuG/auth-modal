@@ -134,6 +134,7 @@
   var urlSearchParams = new URLSearchParams(window.location.search);
   var params = Object.fromEntries(urlSearchParams.entries());
 
+  // TODO: Better logic here. Add custom query params to URL, and use them here
   if (params.userId && params.secret && params.expire) {
     if (params.projectId) {
       // Magic URL functionality
